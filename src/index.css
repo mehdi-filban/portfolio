@@ -1,0 +1,43 @@
+@import "tailwindcss";
+/* :root {
+  --custome-green: "#009689";
+} */
+/* :root {
+  font-family: Inter;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+/* @layer components {
+  .customeGreen {
+    color: var(--custome-green);
+  }
+} */
+
+:root {
+  background-color: #f4f4f5;
+}
+
+.green {
+  color: #009689;
+  font-weight: bold;
+}
+
+.link {
+  color: #009689;
+  transition: 0.2s all ease-in;
+}
+
+.link:hover {
+  background-color: #009689;
+  color: white;
+}
