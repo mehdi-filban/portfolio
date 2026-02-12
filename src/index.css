@@ -22,7 +22,10 @@
     color: var(--custome-green);
   }
 } */
-
+ 
+html {
+  scroll-behavior: smooth;
+}
 :root {
   background-color: #f4f4f5;
 }

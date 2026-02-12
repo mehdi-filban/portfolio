@@ -11,9 +11,9 @@ import "../index.css";
 
 const navigation = [
   { name: "Home", href: "#", current: true },
-  { name: "Projects", href: "#", current: false },
-  { name: "About Me", href: "#", current: false },
-  { name: "Contact Me", href: "#", current: false },
+  { name: "Projects", href: "#projects", current: false },
+  { name: "About Me", href: "#about", current: false },
+  { name: "Contact Me", href: "#contact", current: false },
 ];
 
 function classNames(...classes) {
