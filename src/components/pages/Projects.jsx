@@ -6,9 +6,17 @@ const projects = [
     title: "ShopFlow — Modern Shopping Cart",
     description:
       "A modern e-commerce UI built with React + Redux Toolkit. Includes debounced search, glass navbar, scroll progress, and a redesigned cart page.",
-    tech: ["React", "Redux Toolkit", "Tailwind CSS", "React Router", "GitHub Pages"],
+    tech: ["React", "Redux Toolkit", "Tailwind CSS", "GitHub Pages"],
     live: "https://mehdi-filban.github.io/shopflow/",
     github: "https://github.com/mehdi-filban/shopflow",
+  },  
+  {
+    title: "Slick React Form",
+    description:
+      "A modern and user-friendly form built with React, focused on clean UI, smooth validation handling, and structured component architecture. Designed to demonstrate practical form logic and real-world input management.",
+    tech: ["React", "Redux Toolkit", "Tailwind CSS", "React Router", "GitHub Pages"],
+    live: "https://mehdi-filban.github.io/slick-react-form/",
+    github: "https://github.com/mehdi-filban/slick-react-form",
   },
   
 ];
