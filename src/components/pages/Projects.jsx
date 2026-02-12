@@ -10,6 +10,7 @@ const projects = [
     live: "https://mehdi-filban.github.io/shopflow/",
     github: "https://github.com/mehdi-filban/shopflow",
   },
+  
 ];
 
 const AUTO_SLIDE_MS = 6000;
@@ -43,129 +44,146 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-12"
+      className="min-h-[calc(100vh-64px)] flex items-center"
     >
-      <div className="grid gap-8 lg:grid-cols-12 items-start">
-        {/* Left column */}
-        <div className="lg:col-span-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
-            className="sticky top-24"
-          >
-            {/* Pill using your green */}
-            <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-white ring-1 ring-black/5">
-              <span className="green">Selected Work</span>
-            </div>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-12 items-center">
+          {/* Left column */}
+          <div className="lg:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5 }}
+              className="w-full"
+            >
+              <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-white ring-1 ring-black/5">
+                <span className="green">Selected Work</span>
+              </div>
 
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-gray-900">
-              Projects
-            </h2>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-gray-900">
+                Projects
+              </h2>
 
-            <p className="mt-3 text-gray-600 leading-relaxed">
-              Selected builds focused on UI engineering, state management, and clean component architecture.
-            </p>
-
-            {/* Current project info */}
-            <div className="mt-6 rounded-2xl bg-white/70 backdrop-blur ring-1 ring-black/5 p-4">
-              <p className="text-xs font-semibold text-gray-500">Now showing</p>
-              <p className="mt-1 font-semibold text-gray-900">{current.title}</p>
-              <p className="mt-2 text-sm text-gray-600 line-clamp-3">
-                {current.description}
+              <p className="mt-3 text-gray-600 leading-relaxed">
+                Selected builds focused on UI engineering, state management, and clean component architecture.
               </p>
-            </div>
 
-            {/* Controls */}
-            <div className="mt-4 flex items-center gap-2">
-              <button
-                onClick={goPrev}
-                className="rounded-2xl px-4 py-2 text-sm font-semibold bg-white ring-1 ring-black/5 hover:bg-gray-50 transition"
-              >
-                Prev
-              </button>
+              {/* Tabs list */}
+              <div className="mt-6 rounded-2xl bg-white/70 backdrop-blur ring-1 ring-black/5 p-3">
+                <p className="px-2 pb-2 text-xs font-semibold text-gray-500">
+                  Project list
+                </p>
 
-              <button
-                onClick={goNext}
-                className="rounded-2xl px-4 py-2 text-sm font-semibold text-white transition"
-                style={{ backgroundColor: "#009689" }}
-              >
-                Next
-              </button>
+                <div className="flex flex-col gap-1">
+                  {projects.map((p, idx) => {
+                    const isActiveItem = idx === active;
+                    return (
+                      <button
+                        key={p.title}
+                        onClick={() => setActive(idx)}
+                        className={[
+                          "w-full text-left rounded-xl px-3 py-2 text-sm font-semibold transition",
+                          isActiveItem
+                            ? "bg-white ring-1 ring-black/10"
+                            : "hover:bg-white/70",
+                        ].join(" ")}
+                      >
+                        <span className={isActiveItem ? "green" : "text-gray-800"}>
+                          {p.title}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
-              <button
-                onClick={() => setIsPaused((v) => !v)}
-                className="ml-auto rounded-2xl px-4 py-2 text-sm font-semibold bg-white ring-1 ring-black/5 hover:bg-gray-50 transition"
-                title="Pause / Resume auto slide"
-              >
-                {isPaused ? "Resume" : "Pause"}
-              </button>
-            </div>
+              {/* Controls */}
+              <div className="mt-4 flex items-center gap-2">
+                <button
+                  onClick={goPrev}
+                  className="rounded-2xl px-4 py-2 text-sm font-semibold bg-white ring-1 ring-black/5 hover:bg-gray-50 transition"
+                >
+                  Prev
+                </button>
 
-            <div className="mt-3 text-xs text-gray-500">
-              {projects.length > 1 ? (
-                <>
-                  Auto-slide is <span className="font-semibold">{isPaused ? "paused" : "on"}</span>.{" "}
-                  Hover the cards to pause.
-                </>
-              ) : (
-                <>Add more projects to enable sliding.</>
-              )}
-            </div>
+                <button
+                  onClick={goNext}
+                  className="rounded-2xl px-4 py-2 text-sm font-semibold text-white transition"
+                  style={{ backgroundColor: "#009689" }}
+                >
+                  Next
+                </button>
 
-            <div className="mt-2 text-sm text-gray-500">
-              {active + 1}/{projects.length}
-            </div>
-          </motion.div>
-        </div>
+                <button
+                  onClick={() => setIsPaused((v) => !v)}
+                  className="ml-auto rounded-2xl px-4 py-2 text-sm font-semibold bg-white ring-1 ring-black/5 hover:bg-gray-50 transition"
+                >
+                  {isPaused ? "Resume" : "Pause"}
+                </button>
+              </div>
 
-        {/* Right column: stacked slider */}
-        <div className="lg:col-span-8">
-          <div
-            className="relative h-[420px] sm:h-[380px]"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {/* background stack cards */}
-            {stack
-              .slice(1)
-              .reverse()
-              .map((p, idx) => (
-                <div
-                  key={`bg-${p.title}-${idx}`}
+              <div className="mt-3 text-xs text-gray-500">
+                {projects.length > 1 ? (
+                  <>
+                    Auto-slide is{" "}
+                    <span className="font-semibold">{isPaused ? "paused" : "on"}</span>.{" "}
+                    Hover the cards to pause.
+                  </>
+                ) : (
+                  <>Add more projects to enable sliding.</>
+                )}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right column: Centered slider */}
+          <div className="lg:col-span-8 flex justify-center">
+            <div
+              className="relative w-full max-w-2xl h-[420px] sm:h-[420px]"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {/* background stack cards */}
+              {stack
+                .slice(1)
+                .reverse()
+                .map((p, idx) => (
+                  <div
+                    key={`bg-${p.title}-${idx}`}
+                    className="absolute inset-0"
+                    style={{
+                      transform: `translateY(${12 + idx * 10}px) scale(${0.98 - idx * 0.02})`,
+                      opacity: 0.45 - idx * 0.15,
+                    }}
+                  >
+                    <Card project={p} dim />
+                  </div>
+                ))}
+
+              {/* top active card */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.title}
                   className="absolute inset-0"
-                  style={{
-                    transform: `translateY(${12 + idx * 10}px) scale(${0.98 - idx * 0.02})`,
-                    opacity: 0.45 - idx * 0.15,
+                  initial={{ opacity: 0, x: 30, rotate: 1 }}
+                  animate={{ opacity: 1, x: 0, rotate: 0 }}
+                  exit={{ opacity: 0, x: -30, rotate: -1 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  drag={projects.length > 1 ? "x" : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.12}
+                  onDragStart={() => setIsPaused(true)}
+                  onDragEnd={(_, info) => {
+                    if (projects.length <= 1) return;
+                    if (info.offset.x > 80) goPrev();
+                    if (info.offset.x < -80) goNext();
                   }}
                 >
-                  <Card project={p} dim />
-                </div>
-              ))}
-
-            {/* top active card */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.title}
-                className="absolute inset-0"
-                initial={{ opacity: 0, x: 30, rotate: 1 }}
-                animate={{ opacity: 1, x: 0, rotate: 0 }}
-                exit={{ opacity: 0, x: -30, rotate: -1 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                drag={projects.length > 1 ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.12}
-                onDragStart={() => setIsPaused(true)}
-                onDragEnd={(_, info) => {
-                  if (projects.length <= 1) return;
-                  if (info.offset.x > 80) goPrev();
-                  if (info.offset.x < -80) goNext();
-                }}
-              >
-                <Card project={current} />
-              </motion.div>
-            </AnimatePresence>
+                  <Card project={current} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>
@@ -214,7 +232,6 @@ function Card({ project, dim = false }) {
           Live Demo
         </a>
 
-        {/* از کلاس link خودت استفاده می‌کنیم */}
         <a
           href={project.github}
           target="_blank"
