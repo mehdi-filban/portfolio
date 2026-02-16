@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20"
+      className="min-h-screen overflow-hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 flex items-center"
     >
       <div className="grid gap-16 lg:grid-cols-12 items-center">
         
@@ -23,7 +23,7 @@ export default function About() {
             />
 
             <img
-              src="/mehdi.jpeg"
+              src="../../mehdi.jpeg"
               alt="Mehdi Filban"
               className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full object-cover shadow-xl ring-4 ring-white"
             />

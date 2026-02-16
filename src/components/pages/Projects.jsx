@@ -52,7 +52,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-[calc(100vh-64px)] flex items-center"
+      className="min-h-screen overflow-hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 flex items-center"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-12 items-center">
