@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Left side */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-700">
             <a
-            href={`${import.meta.env.BASE_URL}resume/Mehdi-Filban-Resume.pdf`}
+              href={`${import.meta.env.BASE_URL}assets/Mehdi-Filban-Resume.pdf`}
               className="green transition-colors duration-200 hover:opacity-80"
               download
             >
