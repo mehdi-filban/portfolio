@@ -9,6 +9,7 @@ function AppLayout() {
       <Navbar />
       <Intro />
       <Projects />
+      <About />
       <Footer />
     </div>
   );
