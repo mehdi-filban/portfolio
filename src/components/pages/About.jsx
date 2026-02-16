@@ -9,7 +9,7 @@ export default function About() {
     >
       <div className="grid gap-16 lg:grid-cols-12 items-center">
         
-    
+        {/* Left Side - Image */}
         <motion.div
           className="lg:col-span-4 flex justify-center"
           initial={{ opacity: 0, scale: 0.9 }}
