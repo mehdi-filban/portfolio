@@ -68,7 +68,7 @@ export default function Hero() {
 
       {/* Call to Action Button */}
       <motion.a
-        href="#portfolio"
+        href="#projects"
         className="bg-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300 link"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
