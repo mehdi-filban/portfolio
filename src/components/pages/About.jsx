@@ -23,7 +23,7 @@ export default function About() {
             />
 
             <img
-              src="../../mehdi.jpeg"
+              src="../mehdi.jpeg"
               alt="Mehdi Filban"
               className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full object-cover shadow-xl ring-4 ring-white"
             />
