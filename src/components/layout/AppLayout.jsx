@@ -2,6 +2,7 @@ import Navbar from "../Navbar";
 import Intro from "../Intro";
 import Footer from "../pages/Footer";
 import Projects from "../pages/Projects"
+import About from '../pages/About'
 
 function AppLayout() {
   return (
