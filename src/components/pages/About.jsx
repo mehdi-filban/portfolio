@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import profile from "../assets/mehdi.jpeg"; 
+// import profile from "../assets/mehdi.jpeg"; 
 
 export default function About() {
   return (
