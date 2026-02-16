@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import profile from "../../assets/img/mehdi.jpeg"
 
+
 export default function About() {
   return (
     <section
@@ -8,7 +9,6 @@ export default function About() {
       className="min-h-screen overflow-hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 flex items-center"
     >
       <div className="grid gap-16 lg:grid-cols-12 items-center">
-        
         {/* Left Side - Image */}
         <motion.div
           className="lg:col-span-4 flex justify-center"
@@ -40,33 +40,37 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <div className="rounded-3xl bg-white shadow-sm ring-1 ring-black/5 p-8">
-            
             <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-white ring-1 ring-black/5">
               <span className="green">About Me</span>
             </div>
 
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-gray-900">
-              درباره من
+              About Me
             </h2>
 
             <p className="mt-6 text-gray-700 leading-relaxed">
-              من <span className="font-semibold">مهدی </span> ام
-              توسعه‌دهنده فرانت‌اند با تمرکز روی ساخت تجربه‌های کاربری{" "}
-              <span className="green">سریع</span>،{" "}
-              <span className="green">قابل اعتماد</span> و{" "}
-              <span className="green">مقیاس‌پذیر</span>.
+              I’m <span className="font-semibold">Mehdi Filban</span>, a Front-End
+              Developer focused on building{" "}
+              <span className="green">fast</span>,{" "}
+              <span className="green">reliable</span>, and{" "}
+              <span className="green">scalable</span> web experiences using React
+              and modern JavaScript.
             </p>
 
             <p className="mt-4 text-gray-700 leading-relaxed">
-              برای من خلق ارزش یعنی فقط یک رابط کاربری زیبا نسازم،
-              بلکه سیستمی طراحی کنم که با رشد محصول پایدار بماند و
-              از نظر فنی قابل توسعه و نگهداری باشد.
+              For me, creating value is not only about clean UI — it’s about
+              designing systems that stay maintainable as products grow. I care
+              about clear component structure, consistent patterns, and code that
+              teams can confidently extend.
             </p>
 
             <p className="mt-4 text-gray-700 leading-relaxed">
-              در پروژه‌ها روی معماری کامپوننت‌محور، مدیریت اصولی state
-              و بهینه‌سازی عملکرد تمرکز دارم تا هم کاربر تجربه‌ای روان داشته باشد
-              و هم تیم توسعه با ساختاری تمیز و مهندسی روبه‌رو باشد.
+              I’ve built and shipped production-ready projects such as{" "}
+              <span className="font-semibold">ShopFlow</span> (an e-commerce UI)
+              and other React applications, working with{" "}
+              <span className="font-semibold">Redux Toolkit</span>, REST API
+              integration, and performance optimization to reduce unnecessary
+              re-renders and keep the user experience smooth across devices.
             </p>
 
             <div className="mt-8 flex gap-4">
@@ -75,7 +79,7 @@ export default function About() {
                 className="px-6 py-3 rounded-2xl text-white font-semibold transition active:scale-[0.98]"
                 style={{ backgroundColor: "#009689" }}
               >
-                مشاهده پروژه‌ها
+                View Projects
               </a>
 
               <a
@@ -84,12 +88,11 @@ export default function About() {
                 rel="noreferrer"
                 className="px-6 py-3 rounded-2xl border border-gray-200 bg-white link"
               >
-                ارتباط در لینکدین
+                Connect on LinkedIn
               </a>
             </div>
           </div>
         </motion.div>
-
       </div>
     </section>
   );
