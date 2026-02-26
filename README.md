@@ -1,12 +1,67 @@
-# React + Vite
+# 📌 Portfolio — Frontend Developer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my **personal portfolio repository**!  
+This is the source code for my portfolio website built with **React + Vite** — a fast and modern frontend setup.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 About
 
-## Expanding the ESLint configuration
+Hi! I’m **Mehdi Filban** — a passionate Frontend Developer with experience building responsive, performant, and user-friendly web applications.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This portfolio showcases my **skills, selected projects, and contact information**.  
+It is designed with a strong focus on clean UI, reusable components, and performance optimization.
+
+---
+
+## 🧠 Tech Stack
+
+- **React** – UI Library  
+- **JavaScript (ES6+)** – Core language  
+- **Vite** – Fast development tooling  
+- **HTML5 & CSS3** – Markup & styling  
+- **Git & GitHub** – Version control  
+
+---
+
+## ✨ Features
+
+✔ Fully responsive design (mobile-first)  
+✔ Clean and modern UI  
+✔ Reusable component-based architecture  
+✔ Optimized performance  
+✔ Fast development experience with Vite HMR  
+✔ Easy to customize and extend  
+
+---
+## 🚀 Deployment
+
+This project can be deployed easily using:
+
+GitHub Pages
+
+Vercel
+
+Netlify
+
+Simply connect the repository and select Vite / React as the framework.
+
+
+## 📫 Contact
+
+If you'd like to collaborate, work together, or just connect:
+
+📧 Email: mehdifilban.work@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/mehdi-filban/
+
+💻 GitHub: [https://github.com/mehdi-filban](https://github.com/mehdi-filban)
+
+## ⭐ Support
+
+If you like this project, feel free to give it a ⭐ on GitHub.
+It helps and motivates me to keep building!
+
+## 📝 License
+
+This project is open-source and available under the MIT License.
