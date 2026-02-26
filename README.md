@@ -19,8 +19,8 @@ It is designed with a strong focus on clean UI, reusable components, and perform
 - **React** – UI Library  
 - **JavaScript (ES6+)** – Core language  
 - **Vite** – Fast development tooling  
-- **HTML5 & CSS3** – Markup & styling  
-- **Git & GitHub** – Version control  
+- **TailwindCss** – styling  
+- **Git & GitHub - Github Actions** – Version control  
 
 ---
 
