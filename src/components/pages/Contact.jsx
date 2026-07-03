@@ -52,23 +52,26 @@ function Contact({ t, language }) {
 
     const labels = t.emailBodyLabels;
 
-    const subject = encodeURIComponent(`${t.emailSubjectPrefix} ${name}`);
+    const subject = `${t.emailSubjectPrefix} ${name}`;
 
-    const body = encodeURIComponent(
-      [
-        `${labels.name}: ${name}`,
-        `${labels.email}: ${email}`,
-        `${labels.projectType}: ${projectType || labels.notSpecified}`,
-        `${labels.budget}: ${budget || labels.notSpecified}`,
-        `${labels.timeline}: ${timeline || labels.notSpecified}`,
-        "",
-        `${labels.message}:`,
-        message,
-      ].join("\n"),
-    );
+    const body = [
+      `${labels.name}: ${name}`,
+      `${labels.email}: ${email}`,
+      `${labels.projectType}: ${projectType || labels.notSpecified}`,
+      `${labels.budget}: ${budget || labels.notSpecified}`,
+      `${labels.timeline}: ${timeline || labels.notSpecified}`,
+      "",
+      `${labels.message}:`,
+      message,
+    ].join("\n");
+
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      EMAIL,
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     setStatus(t.statusReady);
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+
+    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
   };
 
   const copyEmail = async () => {
