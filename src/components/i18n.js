@@ -108,7 +108,7 @@ export const translations = {
         "1+ month",
         "Not sure yet",
       ],
-      submit: "Send Message",
+      submit: "Send Email",
       submitHint:
         "This opens your email app with the message already prepared.",
       statusReady: "Your email app is opening with the message ready to send.",
