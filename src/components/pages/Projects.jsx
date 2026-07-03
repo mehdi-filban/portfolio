@@ -35,6 +35,7 @@ export default function Projects() {
   const stack = useMemo(() => {
     const next1 = projects[(active + 1) % projects.length];
     const next2 = projects[(active + 2) % projects.length];
+
     return [current, next1, next2].filter(Boolean);
   }, [active, current]);
 
@@ -47,6 +48,7 @@ export default function Projects() {
     if (projects.length <= 1 || isPaused) return;
 
     const id = setInterval(goNext, AUTO_SLIDE_MS);
+
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, isPaused]);
@@ -54,7 +56,8 @@ export default function Projects() {
   return (
     <section
       id='projects'
-      className='min-h-screen overflow-hidden px-4 py-20 sm:px-6 lg:px-8'
+      dir='ltr'
+      className='min-h-screen overflow-hidden px-4 py-20 text-left sm:px-6 lg:px-8'
     >
       <div className='mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12'>
         <motion.div
@@ -64,7 +67,7 @@ export default function Projects() {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <div className='inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#009689] shadow-sm ring-1 ring-black/5 dark:bg-white/10 dark:text-[#2dd4bf] dark:ring-white/10'>
+          <div className='inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#009689] shadow-sm ring-1 ring-black/5 dark:bg-zinc-900 dark:text-[#2dd4bf] dark:ring-white/10'>
             Selected Work
           </div>
 
@@ -77,7 +80,7 @@ export default function Projects() {
             state management, responsive layouts and smooth user flows.
           </p>
 
-          <div className='mt-7 rounded-[1.5rem] bg-white/80 p-2 shadow-sm ring-1 ring-black/5 backdrop-blur dark:bg-white/10 dark:ring-white/10'>
+          <div className='mt-7 rounded-[1.5rem] bg-white/80 p-2 shadow-sm ring-1 ring-black/5 backdrop-blur dark:bg-zinc-900/90 dark:ring-white/10'>
             {projects.map((project, index) => {
               const isActive = index === active;
 
@@ -127,7 +130,7 @@ export default function Projects() {
             <button
               type='button'
               onClick={goPrev}
-              className='rounded-2xl bg-white px-4 py-2 text-sm font-bold text-gray-800 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:text-[#009689] dark:bg-white/10 dark:text-zinc-100 dark:ring-white/10 dark:hover:text-[#2dd4bf]'
+              className='rounded-2xl bg-white px-4 py-2 text-sm font-bold text-gray-800 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:text-[#009689] dark:bg-zinc-900 dark:text-zinc-100 dark:ring-white/10 dark:hover:text-[#2dd4bf]'
             >
               Prev
             </button>
@@ -143,7 +146,7 @@ export default function Projects() {
             <button
               type='button'
               onClick={() => setIsPaused((value) => !value)}
-              className='ml-auto rounded-2xl bg-white px-4 py-2 text-sm font-bold text-gray-800 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:text-[#009689] dark:bg-white/10 dark:text-zinc-100 dark:ring-white/10 dark:hover:text-[#2dd4bf]'
+              className='ml-auto rounded-2xl bg-white px-4 py-2 text-sm font-bold text-gray-800 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:text-[#009689] dark:bg-zinc-900 dark:text-zinc-100 dark:ring-white/10 dark:hover:text-[#2dd4bf]'
             >
               {isPaused ? "Resume" : "Pause"}
             </button>
@@ -176,7 +179,7 @@ export default function Projects() {
 
         <div className='lg:col-span-8'>
           <div
-            className='relative mx-auto h-[560px] w-full max-w-2xl sm:h-[480px] lg:h-[440px]'
+            className='relative mx-auto w-full max-w-2xl sm:h-[500px] lg:h-[460px]'
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
@@ -186,12 +189,12 @@ export default function Projects() {
               .map((project, index) => (
                 <div
                   key={`background-${project.title}-${index}`}
-                  className='absolute inset-0 hidden sm:block'
+                  className='pointer-events-none absolute inset-0 hidden sm:block'
                   style={{
                     transform: `translateY(${14 + index * 12}px) scale(${
                       0.98 - index * 0.025
                     })`,
-                    opacity: 0.45 - index * 0.16,
+                    opacity: 0.22 - index * 0.08,
                   }}
                 >
                   <ProjectCard project={project} dim />
@@ -201,7 +204,7 @@ export default function Projects() {
             <AnimatePresence mode='wait'>
               <motion.div
                 key={current.title}
-                className='absolute inset-0'
+                className='relative sm:absolute sm:inset-0'
                 initial={{ opacity: 0, x: 40, rotate: 1 }}
                 animate={{ opacity: 1, x: 0, rotate: 0 }}
                 exit={{ opacity: 0, x: -40, rotate: -1 }}
@@ -230,8 +233,8 @@ function ProjectCard({ project, dim = false }) {
   return (
     <article
       className={[
-        "flex h-full flex-col rounded-[2rem] bg-white p-6 shadow-xl ring-1 ring-black/5 transition sm:p-8 dark:bg-white/10 dark:ring-white/10",
-        dim ? "" : "hover:-translate-y-1 hover:shadow-2xl",
+        "flex h-auto flex-col rounded-[2rem] bg-white p-6 text-left shadow-xl ring-1 ring-black/5 transition sm:h-full sm:p-8 dark:bg-zinc-900 dark:ring-white/10",
+        dim ? "dark:bg-zinc-900" : "hover:-translate-y-1 hover:shadow-2xl",
       ].join(" ")}
     >
       <div className='flex items-start justify-between gap-4'>
@@ -280,7 +283,7 @@ function ProjectCard({ project, dim = false }) {
         ))}
       </div>
 
-      <div className='mt-auto flex flex-col gap-3 pt-8 sm:flex-row'>
+      <div className='mt-8 flex flex-col gap-3 sm:mt-auto sm:flex-row sm:pt-8'>
         <a
           href={project.live}
           target='_blank'

@@ -1,4 +1,4 @@
-export default function Footer() {
+export default function Footer({ t }) {
   return (
     <footer
       role='contentinfo'
@@ -8,11 +8,11 @@ export default function Footer() {
         <div className='flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left'>
           <div>
             <p className='text-sm font-bold text-gray-900 dark:text-white'>
-              Mehdi Filban
+              {t.name}
             </p>
 
             <p className='mt-1 text-xs font-semibold text-gray-500 dark:text-zinc-400'>
-              Front-End Engineer • React & Next.js Developer
+              {t.role}
             </p>
           </div>
 
@@ -22,7 +22,7 @@ export default function Footer() {
               className='transition hover:text-[#009689] dark:hover:text-[#2dd4bf]'
               download
             >
-              Resume
+              {t.resume}
             </a>
 
             <span className='text-gray-300 dark:text-white/20'>/</span>
@@ -33,7 +33,7 @@ export default function Footer() {
               rel='noreferrer'
               className='transition hover:text-[#009689] dark:hover:text-[#2dd4bf]'
             >
-              GitHub
+              {t.github}
             </a>
 
             <span className='text-gray-300 dark:text-white/20'>/</span>
@@ -44,12 +44,12 @@ export default function Footer() {
               rel='noreferrer'
               className='transition hover:text-[#009689] dark:hover:text-[#2dd4bf]'
             >
-              LinkedIn
+              {t.linkedin}
             </a>
           </div>
 
           <p className='text-xs font-semibold text-gray-500 dark:text-zinc-400'>
-            © {new Date().getFullYear()} All rights reserved.
+            © {new Date().getFullYear()} {t.rights}
           </p>
         </div>
       </div>

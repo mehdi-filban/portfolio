@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowTopRightOnSquareIcon,
@@ -9,23 +9,33 @@ import {
 
 const EMAIL = "mehdifilban.work@gmail.com";
 
-const contactCards = [
-  {
-    label: "Email",
-    value: EMAIL,
-    href: `mailto:${EMAIL}`,
-    icon: EnvelopeIcon,
-  },
-  {
-    label: "LinkedIn",
-    value: "mehdi-filban",
-    href: "https://linkedin.com/in/mehdi-filban",
-    icon: ArrowTopRightOnSquareIcon,
-  },
-];
-
-function Contact() {
+function Contact({ t, language }) {
   const [status, setStatus] = useState("");
+  const [isEmailCopied, setIsEmailCopied] = useState(false);
+  const copyTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimerRef.current) {
+        clearTimeout(copyTimerRef.current);
+      }
+    };
+  }, []);
+
+  const contactCards = [
+    {
+      label: t.email,
+      value: EMAIL,
+      href: `mailto:${EMAIL}`,
+      icon: EnvelopeIcon,
+    },
+    {
+      label: t.linkedin,
+      value: "mehdi-filban",
+      href: "https://linkedin.com/in/mehdi-filban",
+      icon: ArrowTopRightOnSquareIcon,
+    },
+  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,32 +50,43 @@ function Contact() {
     const timeline = formData.get("timeline")?.toString().trim();
     const message = formData.get("message")?.toString().trim();
 
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const labels = t.emailBodyLabels;
+
+    const subject = encodeURIComponent(`${t.emailSubjectPrefix} ${name}`);
+
     const body = encodeURIComponent(
       [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Project Type: ${projectType || "Not specified"}`,
-        `Budget: ${budget || "Not specified"}`,
-        `Timeline: ${timeline || "Not specified"}`,
+        `${labels.name}: ${name}`,
+        `${labels.email}: ${email}`,
+        `${labels.projectType}: ${projectType || labels.notSpecified}`,
+        `${labels.budget}: ${budget || labels.notSpecified}`,
+        `${labels.timeline}: ${timeline || labels.notSpecified}`,
         "",
-        "Message:",
+        `${labels.message}:`,
         message,
       ].join("\n"),
     );
 
-    setStatus("Your email app is opening with the message ready to send.");
+    setStatus(t.statusReady);
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
   };
 
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL);
-      setStatus("Email address copied to clipboard.");
+
+      setStatus("");
+      setIsEmailCopied(true);
+
+      if (copyTimerRef.current) {
+        clearTimeout(copyTimerRef.current);
+      }
+
+      copyTimerRef.current = setTimeout(() => {
+        setIsEmailCopied(false);
+      }, 2500);
     } catch {
-      setStatus(
-        "Could not copy automatically. You can copy the email manually.",
-      );
+      setStatus(t.statusCopyError);
     }
   };
 
@@ -86,17 +107,15 @@ function Contact() {
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
           <div className='inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#009689] shadow-sm ring-1 ring-black/5 dark:bg-white/10 dark:text-[#2dd4bf] dark:ring-white/10'>
-            Contact
+            {t.badge}
           </div>
 
           <h2 className='mt-4 text-3xl font-black tracking-tight text-gray-950 dark:text-white sm:text-4xl'>
-            Let’s turn your idea into a clean, fast frontend experience.
+            {t.title}
           </h2>
 
           <p className='mt-4 leading-8 text-gray-600 dark:text-zinc-300'>
-            Send a quick brief about your project, dashboard, landing page or
-            React application. The form prepares a professional email with your
-            details, so you can send it directly from your email app.
+            {t.description}
           </p>
 
           <div className='mt-8 grid gap-3'>
@@ -120,7 +139,10 @@ function Contact() {
                       {card.label}
                     </span>
 
-                    <span className='block truncate text-sm font-semibold text-gray-500 group-hover:text-[#009689] dark:text-zinc-400 dark:group-hover:text-[#2dd4bf]'>
+                    <span
+                      dir='ltr'
+                      className='block truncate text-sm font-semibold text-gray-500 group-hover:text-[#009689] dark:text-zinc-400 dark:group-hover:text-[#2dd4bf]'
+                    >
                       {card.value}
                     </span>
                   </span>
@@ -139,11 +161,11 @@ function Contact() {
 
               <span>
                 <span className='block text-sm font-bold text-gray-950 dark:text-white'>
-                  Copy Email
+                  {isEmailCopied ? t.statusCopied : t.copyEmail}
                 </span>
 
                 <span className='block text-sm font-semibold text-gray-500 group-hover:text-[#009689] dark:text-zinc-400 dark:group-hover:text-[#2dd4bf]'>
-                  Quick copy for manual contact
+                  {t.copyEmailDescription}
                 </span>
               </span>
             </button>
@@ -164,88 +186,84 @@ function Contact() {
             <div className='flex items-start justify-between gap-4 border-b border-black/5 pb-6 dark:border-white/10'>
               <div>
                 <p className='text-sm font-bold text-[#009689] dark:text-[#2dd4bf]'>
-                  Project Brief
+                  {t.formBadge}
                 </p>
 
                 <h3 className='mt-2 text-2xl font-black tracking-tight text-gray-950 dark:text-white'>
-                  Tell me what you want to build.
+                  {t.formTitle}
                 </h3>
               </div>
 
               <span className='hidden rounded-full bg-zinc-50 px-3 py-1 text-xs font-bold text-gray-500 ring-1 ring-black/5 sm:inline-flex dark:bg-white/10 dark:text-zinc-300 dark:ring-white/10'>
-                Mail-ready form
+                {t.formPill}
               </span>
             </div>
 
             <div className='mt-6 grid gap-5 sm:grid-cols-2'>
-              <Field label='Name' htmlFor='name'>
+              <Field label={t.fields.name} htmlFor='name'>
                 <input
                   type='text'
                   id='name'
                   name='name'
                   required
-                  placeholder='Your name'
+                  placeholder={t.placeholders.name}
                   className='input-field'
                 />
               </Field>
 
-              <Field label='Email' htmlFor='email'>
+              <Field label={t.fields.email} htmlFor='email'>
                 <input
+                  dir='ltr'
                   type='email'
                   id='email'
                   name='email'
                   required
-                  placeholder='your@email.com'
-                  className='input-field'
+                  placeholder={t.placeholders.email}
+                  className='input-field text-left'
                 />
               </Field>
 
-              <Field label='Project Type' htmlFor='projectType'>
+              <Field label={t.fields.projectType} htmlFor='projectType'>
                 <select
                   id='projectType'
                   name='projectType'
                   className='input-field'
                 >
-                  <option>React Application</option>
-                  <option>Next.js Website</option>
-                  <option>Landing Page</option>
-                  <option>Admin Dashboard</option>
-                  <option>UI Refactor</option>
-                  <option>Other</option>
+                  {t.projectTypes.map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
                 </select>
               </Field>
 
-              <Field label='Timeline' htmlFor='timeline'>
+              <Field label={t.fields.timeline} htmlFor='timeline'>
                 <select id='timeline' name='timeline' className='input-field'>
-                  <option>Flexible</option>
-                  <option>1 - 2 weeks</option>
-                  <option>2 - 4 weeks</option>
-                  <option>1+ month</option>
-                  <option>Not sure yet</option>
+                  {t.timelines.map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
                 </select>
               </Field>
             </div>
 
             <div className='mt-5'>
-              <Field label='Budget / Scope' htmlFor='budget'>
+              <Field label={t.fields.budget} htmlFor='budget'>
                 <input
                   type='text'
                   id='budget'
                   name='budget'
-                  placeholder='Example: small landing page, full dashboard, hourly work...'
+                  placeholder={t.placeholders.budget}
                   className='input-field'
                 />
               </Field>
             </div>
 
             <div className='mt-5'>
-              <Field label='Message' htmlFor='message'>
+              <Field label={t.fields.message} htmlFor='message'>
                 <textarea
                   id='message'
                   name='message'
                   rows='6'
                   required
-                  placeholder='Tell me about your project goals, pages, features, deadline and preferred tech stack...'
+                  placeholder={t.placeholders.message}
                   className='input-field resize-none'
                 />
               </Field>
@@ -257,11 +275,11 @@ function Contact() {
                 className='inline-flex items-center justify-center gap-2 rounded-2xl bg-[#009689] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#007f75] hover:shadow-md active:scale-[0.98]'
               >
                 <PaperAirplaneIcon className='h-5 w-5' aria-hidden='true' />
-                Send Message
+                {t.submit}
               </button>
 
               <p className='text-xs font-semibold leading-5 text-gray-500 dark:text-zinc-400'>
-                This opens your email app with the message already prepared.
+                {t.submitHint}
               </p>
             </div>
 

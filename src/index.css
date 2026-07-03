@@ -2,16 +2,49 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@font-face {
+  font-family: "Samim";
+  src: url("./assets/fonts/samim/Samim.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Samim";
+  src: url("./assets/fonts/samim/Samim-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color: #111827;
   background-color: #f4f4f5;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang="fa"] {
+  font-family:
+    "Samim",
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 * {
@@ -28,7 +61,11 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(0, 150, 137, 0.12), transparent 28rem),
+    radial-gradient(
+      circle at top left,
+      rgba(0, 150, 137, 0.12),
+      transparent 28rem
+    ),
     #f4f4f5;
   transition:
     background-color 0.3s ease,
@@ -37,8 +74,16 @@ body {
 
 html.dark body {
   background:
-    radial-gradient(circle at top left, rgba(45, 212, 191, 0.16), transparent 28rem),
-    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 24rem),
+    radial-gradient(
+      circle at top left,
+      rgba(45, 212, 191, 0.16),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 255, 255, 0.08),
+      transparent 24rem
+    ),
     #09090b;
 }
 
