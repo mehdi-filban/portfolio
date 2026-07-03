@@ -1,24 +1,27 @@
 import { useEffect, useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const projects = [
   {
-    title: "ShopFlow — Modern Shopping Cart",
+    title: "ShopFlow",
+    subtitle: "Modern E-Commerce UI",
     description:
-      "A modern e-commerce UI built with React + Redux Toolkit. Includes debounced search, glass navbar, scroll progress, and a redesigned cart page.",
+      "A polished e-commerce experience built with React and Redux Toolkit. The project focuses on product discovery, cart flow, responsive layouts and performance-friendly component structure.",
     tech: ["React", "Redux Toolkit", "Tailwind CSS", "GitHub Pages"],
+    impact: ["Cart workflow", "Debounced search", "Mobile-first UI"],
     live: "https://mehdi-filban.github.io/shopflow/",
     github: "https://github.com/mehdi-filban/shopflow",
-  },  
+  },
   {
     title: "Slick React Form",
+    subtitle: "Form UX & Validation Flow",
     description:
-      "A modern and user-friendly form built with React, focused on clean UI, smooth validation handling, and structured component architecture. Designed to demonstrate practical form logic and real-world input management.",
-    tech: ["React", "Redux Toolkit", "Tailwind CSS", "React Router", "GitHub Pages"],
+      "A clean form experience designed to demonstrate practical validation logic, structured components and user-friendly input handling in a real-world interface.",
+    tech: ["React", "Redux Toolkit", "Tailwind CSS", "React Router"],
+    impact: ["Validation UX", "Reusable fields", "Responsive layout"],
     live: "https://mehdi-filban.github.io/slick-react-form/",
     github: "https://github.com/mehdi-filban/slick-react-form",
   },
-  
 ];
 
 const AUTO_SLIDE_MS = 6000;
@@ -36,162 +39,186 @@ export default function Projects() {
   }, [active, current]);
 
   const goPrev = () =>
-    setActive((i) => (i - 1 + projects.length) % projects.length);
-  const goNext = () => setActive((i) => (i + 1) % projects.length);
+    setActive((index) => (index - 1 + projects.length) % projects.length);
 
-  // ✅ Auto slide
+  const goNext = () => setActive((index) => (index + 1) % projects.length);
+
   useEffect(() => {
-    if (projects.length <= 1) return;
-    if (isPaused) return;
+    if (projects.length <= 1 || isPaused) return;
 
     const id = setInterval(goNext, AUTO_SLIDE_MS);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPaused, active]);
+  }, [active, isPaused]);
 
   return (
     <section
-      id="projects"
-      className="min-h-screen overflow-hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 flex items-center"
+      id='projects'
+      className='min-h-screen overflow-hidden px-4 py-20 sm:px-6 lg:px-8'
     >
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-12 items-center">
-          {/* Left column */}
-          <div className="lg:col-span-4">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
-            >
-              <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-white ring-1 ring-black/5">
-                <span className="green">Selected Work</span>
-              </div>
-
-              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-gray-900">
-                Projects
-              </h2>
-
-              <p className="mt-3 text-gray-600 leading-relaxed">
-                Selected builds focused on UI engineering, state management, and clean component architecture.
-              </p>
-
-              {/* Tabs list */}
-              <div className="mt-6 rounded-2xl bg-white/70 backdrop-blur ring-1 ring-black/5 p-3">
-                <p className="px-2 pb-2 text-xs font-semibold text-gray-500">
-                  Project list
-                </p>
-
-                <div className="flex flex-col gap-1">
-                  {projects.map((p, idx) => {
-                    const isActiveItem = idx === active;
-                    return (
-                      <button
-                        key={p.title}
-                        onClick={() => setActive(idx)}
-                        className={[
-                          "w-full text-left rounded-xl px-3 py-2 text-sm font-semibold transition",
-                          isActiveItem
-                            ? "bg-white ring-1 ring-black/10"
-                            : "hover:bg-white/70",
-                        ].join(" ")}
-                      >
-                        <span className={isActiveItem ? "green" : "text-gray-800"}>
-                          {p.title}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Controls */}
-              <div className="mt-4 flex items-center gap-2">
-                <button
-                  onClick={goPrev}
-                  className="rounded-2xl px-4 py-2 text-sm font-semibold bg-white ring-1 ring-black/5 hover:bg-gray-50 transition"
-                >
-                  Prev
-                </button>
-
-                <button
-                  onClick={goNext}
-                  className="rounded-2xl px-4 py-2 text-sm font-semibold text-white transition"
-                  style={{ backgroundColor: "#009689" }}
-                >
-                  Next
-                </button>
-
-                <button
-                  onClick={() => setIsPaused((v) => !v)}
-                  className="ml-auto rounded-2xl px-4 py-2 text-sm font-semibold bg-white ring-1 ring-black/5 hover:bg-gray-50 transition"
-                >
-                  {isPaused ? "Resume" : "Pause"}
-                </button>
-              </div>
-
-              <div className="mt-3 text-xs text-gray-500">
-                {projects.length > 1 ? (
-                  <>
-                    Auto-slide is{" "}
-                    <span className="font-semibold">{isPaused ? "paused" : "on"}</span>.{" "}
-                    Hover the cards to pause.
-                  </>
-                ) : (
-                  <>Add more projects to enable sliding.</>
-                )}
-              </div>
-            </motion.div>
+      <div className='mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12'>
+        <motion.div
+          className='lg:col-span-4'
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <div className='inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#009689] shadow-sm ring-1 ring-black/5 dark:bg-white/10 dark:text-[#2dd4bf] dark:ring-white/10'>
+            Selected Work
           </div>
 
-          {/* Right column: Centered slider */}
-          <div className="lg:col-span-8 flex justify-center">
-            <div
-              className="relative w-full max-w-2xl h-[420px] sm:h-[420px]"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              {/* background stack cards */}
-              {stack
-                .slice(1)
-                .reverse()
-                .map((p, idx) => (
-                  <div
-                    key={`bg-${p.title}-${idx}`}
-                    className="absolute inset-0"
-                    style={{
-                      transform: `translateY(${12 + idx * 10}px) scale(${0.98 - idx * 0.02})`,
-                      opacity: 0.45 - idx * 0.15,
-                    }}
-                  >
-                    <Card project={p} dim />
-                  </div>
-                ))}
+          <h2 className='mt-4 text-3xl font-black tracking-tight text-gray-950 dark:text-white sm:text-4xl'>
+            Projects that show product thinking, not just UI.
+          </h2>
 
-              {/* top active card */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.title}
-                  className="absolute inset-0"
-                  initial={{ opacity: 0, x: 30, rotate: 1 }}
-                  animate={{ opacity: 1, x: 0, rotate: 0 }}
-                  exit={{ opacity: 0, x: -30, rotate: -1 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  drag={projects.length > 1 ? "x" : false}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.12}
-                  onDragStart={() => setIsPaused(true)}
-                  onDragEnd={(_, info) => {
-                    if (projects.length <= 1) return;
-                    if (info.offset.x > 80) goPrev();
-                    if (info.offset.x < -80) goNext();
+          <p className='mt-4 leading-7 text-gray-600 dark:text-zinc-300'>
+            A focused selection of projects built around component architecture,
+            state management, responsive layouts and smooth user flows.
+          </p>
+
+          <div className='mt-7 rounded-[1.5rem] bg-white/80 p-2 shadow-sm ring-1 ring-black/5 backdrop-blur dark:bg-white/10 dark:ring-white/10'>
+            {projects.map((project, index) => {
+              const isActive = index === active;
+
+              return (
+                <button
+                  key={project.title}
+                  type='button'
+                  onClick={() => setActive(index)}
+                  className={[
+                    "group flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition",
+                    isActive
+                      ? "bg-zinc-950 text-white shadow-sm dark:bg-[#009689]"
+                      : "text-gray-700 hover:bg-zinc-50 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white",
+                  ].join(" ")}
+                >
+                  <span>
+                    <span className='block text-sm font-bold'>
+                      {project.title}
+                    </span>
+
+                    <span
+                      className={[
+                        "mt-0.5 block text-xs",
+                        isActive
+                          ? "text-zinc-300 dark:text-white/80"
+                          : "text-gray-500 dark:text-zinc-400",
+                      ].join(" ")}
+                    >
+                      {project.subtitle}
+                    </span>
+                  </span>
+
+                  <span
+                    className={[
+                      "h-2 w-2 rounded-full transition",
+                      isActive
+                        ? "bg-[#009689] dark:bg-white"
+                        : "bg-gray-300 group-hover:bg-[#009689]/60 dark:bg-white/20 dark:group-hover:bg-[#2dd4bf]",
+                    ].join(" ")}
+                  />
+                </button>
+              );
+            })}
+          </div>
+
+          <div className='mt-5 flex items-center gap-2'>
+            <button
+              type='button'
+              onClick={goPrev}
+              className='rounded-2xl bg-white px-4 py-2 text-sm font-bold text-gray-800 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:text-[#009689] dark:bg-white/10 dark:text-zinc-100 dark:ring-white/10 dark:hover:text-[#2dd4bf]'
+            >
+              Prev
+            </button>
+
+            <button
+              type='button'
+              onClick={goNext}
+              className='rounded-2xl bg-[#009689] px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#007f75]'
+            >
+              Next
+            </button>
+
+            <button
+              type='button'
+              onClick={() => setIsPaused((value) => !value)}
+              className='ml-auto rounded-2xl bg-white px-4 py-2 text-sm font-bold text-gray-800 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:text-[#009689] dark:bg-white/10 dark:text-zinc-100 dark:ring-white/10 dark:hover:text-[#2dd4bf]'
+            >
+              {isPaused ? "Resume" : "Pause"}
+            </button>
+          </div>
+
+          <div
+            className='mt-4 flex items-center gap-2'
+            aria-label='Project slider status'
+          >
+            {projects.map((project, index) => (
+              <button
+                key={project.title}
+                type='button'
+                onClick={() => setActive(index)}
+                aria-label={`Show ${project.title}`}
+                className={[
+                  "h-2.5 rounded-full transition-all",
+                  index === active
+                    ? "w-8 bg-[#009689]"
+                    : "w-2.5 bg-gray-300 hover:bg-gray-400 dark:bg-white/20 dark:hover:bg-white/40",
+                ].join(" ")}
+              />
+            ))}
+
+            <span className='ml-2 text-xs font-semibold text-gray-500 dark:text-zinc-400'>
+              {active + 1} / {projects.length}
+            </span>
+          </div>
+        </motion.div>
+
+        <div className='lg:col-span-8'>
+          <div
+            className='relative mx-auto h-[560px] w-full max-w-2xl sm:h-[480px] lg:h-[440px]'
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {stack
+              .slice(1)
+              .reverse()
+              .map((project, index) => (
+                <div
+                  key={`background-${project.title}-${index}`}
+                  className='absolute inset-0 hidden sm:block'
+                  style={{
+                    transform: `translateY(${14 + index * 12}px) scale(${
+                      0.98 - index * 0.025
+                    })`,
+                    opacity: 0.45 - index * 0.16,
                   }}
                 >
-                  <Card project={current} />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                  <ProjectCard project={project} dim />
+                </div>
+              ))}
+
+            <AnimatePresence mode='wait'>
+              <motion.div
+                key={current.title}
+                className='absolute inset-0'
+                initial={{ opacity: 0, x: 40, rotate: 1 }}
+                animate={{ opacity: 1, x: 0, rotate: 0 }}
+                exit={{ opacity: 0, x: -40, rotate: -1 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                drag={projects.length > 1 ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.12}
+                onDragStart={() => setIsPaused(true)}
+                onDragEnd={(_, info) => {
+                  if (projects.length <= 1) return;
+                  if (info.offset.x > 80) goPrev();
+                  if (info.offset.x < -80) goNext();
+                }}
+              >
+                <ProjectCard project={current} />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
@@ -199,56 +226,79 @@ export default function Projects() {
   );
 }
 
-function Card({ project, dim = false }) {
+function ProjectCard({ project, dim = false }) {
   return (
-    <div
+    <article
       className={[
-        "h-full rounded-3xl bg-white shadow-sm ring-1 ring-black/5 p-6 sm:p-7 transition-shadow",
-        dim ? "" : "hover:shadow-md",
+        "flex h-full flex-col rounded-[2rem] bg-white p-6 shadow-xl ring-1 ring-black/5 transition sm:p-8 dark:bg-white/10 dark:ring-white/10",
+        dim ? "" : "hover:-translate-y-1 hover:shadow-2xl",
       ].join(" ")}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="text-xl font-semibold text-gray-900">{project.title}</h3>
-          <p className="mt-2 text-gray-600 leading-relaxed">{project.description}</p>
+      <div className='flex items-start justify-between gap-4'>
+        <div>
+          <p className='text-sm font-bold text-[#009689] dark:text-[#2dd4bf]'>
+            Featured Project
+          </p>
+
+          <h3 className='mt-3 text-3xl font-black tracking-tight text-gray-950 dark:text-white'>
+            {project.title}
+          </h3>
+
+          <p className='mt-1 text-sm font-bold text-gray-500 dark:text-zinc-400'>
+            {project.subtitle}
+          </p>
         </div>
 
-        <span className="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-semibold ring-1 ring-black/5">
-          <span className="green">Featured</span>
+        <span className='rounded-full bg-zinc-50 px-3 py-1 text-xs font-bold text-gray-600 ring-1 ring-black/5 dark:bg-white/10 dark:text-zinc-300 dark:ring-white/10'>
+          UI Case
         </span>
       </div>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        {project.tech.map((t) => (
-          <span
-            key={t}
-            className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700"
+      <p className='mt-6 leading-7 text-gray-600 dark:text-zinc-300'>
+        {project.description}
+      </p>
+
+      <div className='mt-6 grid gap-3 sm:grid-cols-3'>
+        {project.impact.map((item) => (
+          <div
+            key={item}
+            className='rounded-2xl bg-zinc-50 p-3 text-sm font-semibold text-gray-700 ring-1 ring-black/5 dark:bg-white/10 dark:text-zinc-200 dark:ring-white/10'
           >
-            {t}
+            {item}
+          </div>
+        ))}
+      </div>
+
+      <div className='mt-6 flex flex-wrap gap-2'>
+        {project.tech.map((tech) => (
+          <span
+            key={tech}
+            className='rounded-full border border-black/5 bg-white px-3 py-1 text-xs font-bold text-gray-600 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-zinc-200'
+          >
+            {tech}
           </span>
         ))}
       </div>
 
-      <div className="mt-6 flex flex-col sm:flex-row gap-3">
+      <div className='mt-auto flex flex-col gap-3 pt-8 sm:flex-row'>
         <a
           href={project.live}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center justify-center rounded-2xl px-5 py-2.5 text-sm font-semibold text-white transition"
-          style={{ backgroundColor: "#009689" }}
+          target='_blank'
+          rel='noreferrer'
+          className='inline-flex items-center justify-center rounded-2xl bg-[#009689] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#007f75] hover:shadow-md'
         >
           Live Demo
         </a>
 
         <a
           href={project.github}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center justify-center rounded-2xl px-5 py-2.5 text-sm font-semibold border border-gray-200 bg-white link"
+          target='_blank'
+          rel='noreferrer'
+          className='inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-5 py-3 text-sm font-bold text-gray-900 shadow-sm transition hover:-translate-y-0.5 hover:border-[#009689]/30 hover:text-[#009689] hover:shadow-md dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-[#2dd4bf]/40 dark:hover:text-[#2dd4bf]'
         >
           GitHub Repo
         </a>
       </div>
-    </div>
+    </article>
   );
 }
