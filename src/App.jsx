@@ -1,13 +1,7 @@
-import NavBar from "./components/Navbar";
 import AppLayout from "./components/layout/AppLayout";
 
-
 function App() {
-  return (
-    <div>
-      <AppLayout />
-    </div>
-  );
+  return <AppLayout />;
 }
 
 export default App;
