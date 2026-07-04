@@ -12,26 +12,51 @@ export default function Intro({ t, language }) {
       <div className='absolute left-1/2 top-20 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-[#009689]/10 blur-3xl dark:bg-[#009689]/20' />
       <div className='absolute right-0 top-1/3 -z-10 h-64 w-64 rounded-full bg-black/5 blur-3xl dark:bg-white/10' />
 
-      <div className='mx-auto grid min-h-[calc(100vh-10rem)] max-w-7xl items-center gap-12 lg:grid-cols-12'>
+      <div
+        dir='ltr'
+        className='mx-auto grid min-h-[calc(100vh-10rem)] max-w-7xl items-center gap-12 lg:grid-cols-12'
+      >
         <motion.div
+          dir={isFa ? "rtl" : "ltr"}
           className={[
-            "lg:col-span-7",
-            isFa ? "text-right" : "text-center lg:text-left",
+            "flex flex-col lg:col-span-7",
+            isFa
+              ? "items-start text-right lg:order-2"
+              : "items-center text-center lg:order-1 lg:items-start lg:text-left",
           ].join(" ")}
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div
-            className={[
-              "inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#009689] shadow-sm ring-1 ring-black/5 dark:bg-white/10 dark:text-[#2dd4bf] dark:ring-white/10",
-              isFa ? "mr-0" : "mx-auto lg:mx-0",
-            ].join(" ")}
-          >
+          <div className='inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#009689] shadow-sm ring-1 ring-black/5 dark:bg-white/10 dark:text-[#2dd4bf] dark:ring-white/10'>
             {t.badge}
           </div>
 
-          <h1 className='mt-6 text-4xl font-black tracking-tight text-gray-950 dark:text-white sm:text-5xl lg:text-7xl'>
-            <span className='block'>{t.titleTop}</span>
+          <h1
+            dir={isFa ? "rtl" : "ltr"}
+            className={[
+              "mt-6 w-full max-w-4xl text-4xl font-black tracking-tight text-gray-950 dark:text-white sm:text-5xl lg:text-7xl",
+              isFa
+                ? "fa-heading text-right leading-[1.45]"
+                : "text-center leading-[1.05] lg:text-left",
+            ].join(" ")}
+          >
+            <span
+              className={[
+                "block w-full",
+                isFa ? "text-right" : "text-center lg:text-left",
+              ].join(" ")}
+            >
+              {t.titleTop}
+            </span>
 
-            <span className='block text-[#009689] dark:text-[#2dd4bf]'>
+            <span
+              dir={isFa ? "rtl" : "ltr"}
+              className={[
+                "block w-full text-[#009689] dark:text-[#2dd4bf]",
+                isFa ? "text-right" : "text-center lg:text-left",
+              ].join(" ")}
+            >
               <Typewriter
                 words={t.words}
                 loop={0}
@@ -44,57 +69,68 @@ export default function Intro({ t, language }) {
             </span>
           </h1>
 
-          <p
-            className={[
-              "mt-6 max-w-2xl text-base leading-8 text-gray-600 dark:text-zinc-300 sm:text-lg",
-              isFa ? "mr-0 ml-auto" : "mx-auto lg:mx-0",
-            ].join(" ")}
-          >
-            {t.description}
-          </p>
-
-          <div
+          <motion.div
             dir={isFa ? "rtl" : "ltr"}
             className={[
-              "mt-8 flex w-full max-w-2xl flex-wrap gap-3",
-              isFa ? "justify-start" : "justify-center lg:justify-start",
+              "mt-6 flex w-full max-w-4xl flex-col",
+              isFa ? "items-start" : "items-center lg:items-start",
             ].join(" ")}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.15, ease: "easeOut" }}
           >
-            <a
-              href='#projects'
-              className='inline-flex items-center justify-center rounded-2xl bg-[#009689] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#007f75] hover:shadow-lg active:scale-[0.98]'
+            <p
+              className={[
+                "w-full max-w-2xl text-base leading-8 text-gray-600 dark:text-zinc-300 sm:text-lg",
+                isFa ? "text-right" : "text-center lg:text-left",
+              ].join(" ")}
             >
-              {t.viewProjects}
-            </a>
+              {t.description}
+            </p>
 
-            <a
-              href='#contact'
-              className='inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-6 py-3 text-sm font-bold text-gray-900 shadow-sm transition hover:-translate-y-0.5 hover:border-[#009689]/30 hover:text-[#009689] hover:shadow-md active:scale-[0.98] dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-[#2dd4bf]/40 dark:hover:text-[#2dd4bf]'
+            <div
+              className={[
+                "mt-8 flex w-full max-w-2xl flex-wrap gap-3",
+                isFa ? "justify-start" : "justify-center lg:justify-start",
+              ].join(" ")}
             >
-              {t.contactMe}
-            </a>
-          </div>
-
-          <div
-            dir={isFa ? "rtl" : "ltr"}
-            className={[
-              "mt-8 flex w-full max-w-2xl flex-wrap gap-2",
-              isFa ? "justify-start" : "justify-center lg:justify-start",
-            ].join(" ")}
-          >
-            {t.skills.map((skill) => (
-              <span
-                key={skill}
-                className='rounded-full border border-black/5 bg-white/80 px-3 py-1 text-xs font-semibold text-gray-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-zinc-200'
+              <a
+                href='#projects'
+                className='inline-flex items-center justify-center rounded-2xl bg-[#009689] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#007f75] hover:shadow-lg active:scale-[0.98]'
               >
-                {skill}
-              </span>
-            ))}
-          </div>
+                {t.viewProjects}
+              </a>
+
+              <a
+                href='#contact'
+                className='inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-6 py-3 text-sm font-bold text-gray-900 shadow-sm transition hover:-translate-y-0.5 hover:border-[#009689]/30 hover:text-[#009689] hover:shadow-md active:scale-[0.98] dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-[#2dd4bf]/40 dark:hover:text-[#2dd4bf]'
+              >
+                {t.contactMe}
+              </a>
+            </div>
+
+            <div
+              className={[
+                "mt-8 flex w-full max-w-2xl flex-wrap gap-2",
+                isFa ? "justify-start" : "justify-center lg:justify-start",
+              ].join(" ")}
+            >
+              {t.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className='rounded-full border border-black/5 bg-white/80 px-3 py-1 text-xs font-semibold text-gray-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-zinc-200'
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
-          className='lg:col-span-5'
+          className={["lg:col-span-5", isFa ? "lg:order-1" : "lg:order-2"].join(
+            " ",
+          )}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
@@ -115,14 +151,12 @@ export default function Intro({ t, language }) {
               </div>
 
               <pre className='overflow-x-auto whitespace-pre-wrap leading-7'>
-                <code>
-                  {`const engineer = {
-                    name: "Mehdi Filban",
-                    role: "Front-End Engineer",
-                    focus: ["UI Architecture", "Performance", "UX"],
-                    stack: ["React", "Next.js", "Redux", "Zustand"]
-                  };`}
-                </code>
+                <code>{`const engineer = {
+  name: "Mehdi Filban",
+  role: "Front-End Engineer",
+  focus: ["UI Architecture", "Performance", "UX"],
+  stack: ["React", "Next.js", "Redux", "Zustand"]
+};`}</code>
               </pre>
             </div>
 

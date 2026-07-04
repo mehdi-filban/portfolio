@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
 import { motion } from "framer-motion";
 import {
   ArrowTopRightOnSquareIcon,
+  CheckIcon,
+  ChevronUpDownIcon,
   ClipboardDocumentIcon,
   EnvelopeIcon,
   PaperAirplaneIcon,
@@ -12,7 +20,18 @@ const EMAIL = "mehdifilban.work@gmail.com";
 function Contact({ t, language }) {
   const [status, setStatus] = useState("");
   const [isEmailCopied, setIsEmailCopied] = useState(false);
+  const [selectedProjectType, setSelectedProjectType] = useState(
+    t.projectTypes[0],
+  );
+  const [selectedTimeline, setSelectedTimeline] = useState(t.timelines[0]);
+
   const copyTimerRef = useRef(null);
+  const isFa = language === "fa";
+
+  useEffect(() => {
+    setSelectedProjectType(t.projectTypes[0]);
+    setSelectedTimeline(t.timelines[0]);
+  }, [language, t.projectTypes, t.timelines]);
 
   useEffect(() => {
     return () => {
@@ -52,23 +71,25 @@ function Contact({ t, language }) {
 
     const labels = t.emailBodyLabels;
 
-    const subject = encodeURIComponent(`${t.emailSubjectPrefix} ${name}`);
+    const subject = `${t.emailSubjectPrefix} ${name}`;
 
-    const body = encodeURIComponent(
-      [
-        `${labels.name}: ${name}`,
-        `${labels.email}: ${email}`,
-        `${labels.projectType}: ${projectType || labels.notSpecified}`,
-        `${labels.budget}: ${budget || labels.notSpecified}`,
-        `${labels.timeline}: ${timeline || labels.notSpecified}`,
-        "",
-        `${labels.message}:`,
-        message,
-      ].join("\n"),
-    );
+    const body = [
+      `${labels.name}: ${name}`,
+      `${labels.email}: ${email}`,
+      `${labels.projectType}: ${projectType || labels.notSpecified}`,
+      `${labels.budget}: ${budget || labels.notSpecified}`,
+      `${labels.timeline}: ${timeline || labels.notSpecified}`,
+      "",
+      `${labels.message}:`,
+      message,
+    ].join("\n");
+
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      EMAIL,
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     setStatus(t.statusReady);
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
   };
 
   const copyEmail = async () => {
@@ -100,7 +121,9 @@ function Contact({ t, language }) {
 
       <div className='mx-auto grid max-w-7xl gap-10 lg:grid-cols-12 lg:items-center'>
         <motion.div
-          className='lg:col-span-5'
+          className={["lg:col-span-5", isFa ? "text-right" : "text-left"].join(
+            " ",
+          )}
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
@@ -110,7 +133,12 @@ function Contact({ t, language }) {
             {t.badge}
           </div>
 
-          <h2 className='mt-4 text-3xl font-black tracking-tight text-gray-950 dark:text-white sm:text-4xl'>
+          <h2
+            className={[
+              "mt-4 text-3xl font-black tracking-tight text-gray-950 dark:text-white sm:text-4xl lg:text-5xl",
+              isFa ? "fa-heading leading-[1.45]" : "leading-[1.08]",
+            ].join(" ")}
+          >
             {t.title}
           </h2>
 
@@ -159,7 +187,7 @@ function Contact({ t, language }) {
                 <ClipboardDocumentIcon className='h-5 w-5' aria-hidden='true' />
               </span>
 
-              <span>
+              <span className={isFa ? "text-right" : "text-left"}>
                 <span className='block text-sm font-bold text-gray-950 dark:text-white'>
                   {isEmailCopied ? t.statusCopied : t.copyEmail}
                 </span>
@@ -181,7 +209,10 @@ function Contact({ t, language }) {
         >
           <form
             onSubmit={handleSubmit}
-            className='rounded-[2rem] bg-white p-5 shadow-xl ring-1 ring-black/5 sm:p-8 dark:bg-white/10 dark:ring-white/10'
+            className={[
+              "rounded-[2rem] bg-white p-5 shadow-xl ring-1 ring-black/5 sm:p-8 dark:bg-white/10 dark:ring-white/10",
+              isFa ? "text-right" : "text-left",
+            ].join(" ")}
           >
             <div className='flex items-start justify-between gap-4 border-b border-black/5 pb-6 dark:border-white/10'>
               <div>
@@ -189,7 +220,12 @@ function Contact({ t, language }) {
                   {t.formBadge}
                 </p>
 
-                <h3 className='mt-2 text-2xl font-black tracking-tight text-gray-950 dark:text-white'>
+                <h3
+                  className={[
+                    "mt-2 text-2xl font-black tracking-tight text-gray-950 dark:text-white",
+                    isFa ? "fa-heading leading-[1.45]" : "leading-tight",
+                  ].join(" ")}
+                >
                   {t.formTitle}
                 </h3>
               </div>
@@ -224,23 +260,25 @@ function Contact({ t, language }) {
               </Field>
 
               <Field label={t.fields.projectType} htmlFor='projectType'>
-                <select
+                <CustomSelect
                   id='projectType'
                   name='projectType'
-                  className='input-field'
-                >
-                  {t.projectTypes.map((item) => (
-                    <option key={item}>{item}</option>
-                  ))}
-                </select>
+                  value={selectedProjectType}
+                  onChange={setSelectedProjectType}
+                  options={t.projectTypes}
+                  isFa={isFa}
+                />
               </Field>
 
               <Field label={t.fields.timeline} htmlFor='timeline'>
-                <select id='timeline' name='timeline' className='input-field'>
-                  {t.timelines.map((item) => (
-                    <option key={item}>{item}</option>
-                  ))}
-                </select>
+                <CustomSelect
+                  id='timeline'
+                  name='timeline'
+                  value={selectedTimeline}
+                  onChange={setSelectedTimeline}
+                  options={t.timelines}
+                  isFa={isFa}
+                />
               </Field>
             </div>
 
@@ -307,6 +345,72 @@ function Field({ label, htmlFor, children }) {
 
       <div className='mt-2'>{children}</div>
     </div>
+  );
+}
+
+function CustomSelect({ id, name, value, onChange, options, isFa }) {
+  return (
+    <Listbox value={value} onChange={onChange}>
+      <div className='relative'>
+        <input type='hidden' name={name} value={value} />
+
+        <ListboxButton
+          id={id}
+          className={[
+            "input-field flex items-center justify-between gap-3 text-sm font-semibold",
+            isFa ? "text-right" : "text-left",
+          ].join(" ")}
+        >
+          <span className='block truncate'>{value}</span>
+
+          <ChevronUpDownIcon
+            className='h-5 w-5 shrink-0 text-gray-400 dark:text-zinc-500'
+            aria-hidden='true'
+          />
+        </ListboxButton>
+
+        <ListboxOptions
+          dir={isFa ? "rtl" : "ltr"}
+          className='absolute z-[80] mt-2 max-h-60 w-full overflow-auto rounded-2xl border border-black/10 bg-white p-1 shadow-2xl shadow-black/10 outline-none ring-1 ring-black/5 dark:border-white/10 dark:bg-zinc-900 dark:shadow-black/40 dark:ring-white/10'
+        >
+          {options.map((option) => (
+            <ListboxOption
+              key={option}
+              value={option}
+              className={({ focus, selected }) =>
+                [
+                  "relative cursor-pointer select-none rounded-xl px-3 py-2.5 text-sm font-semibold transition",
+                  isFa ? "text-right pr-9" : "text-left pl-9",
+                  focus
+                    ? "bg-[#009689]/10 text-[#007f75] dark:bg-[#2dd4bf]/10 dark:text-[#2dd4bf]"
+                    : "text-gray-700 dark:text-zinc-200",
+                  selected
+                    ? "bg-[#009689]/10 text-[#007f75] dark:bg-[#2dd4bf]/10 dark:text-[#2dd4bf]"
+                    : "",
+                ].join(" ")
+              }
+            >
+              {({ selected }) => (
+                <>
+                  {selected && (
+                    <span
+                      className={[
+                        "absolute top-1/2 -translate-y-1/2 text-[#009689] dark:text-[#2dd4bf]",
+                        isFa ? "right-3" : "left-3",
+                      ].join(" ")}
+                    >
+                      <CheckIcon className='h-4 w-4' aria-hidden='true' />
+                    </span>
+                  )}
+
+                  <span className='block truncate'>{option}</span>
+                </>
+              )}
+            </ListboxOption>
+          ))}
+        </ListboxOptions>
+      </div>
+    </Listbox>
   );
 }
 
