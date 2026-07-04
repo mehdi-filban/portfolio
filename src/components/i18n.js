@@ -43,8 +43,7 @@ export const translations = {
 
     about: {
       badge: "About Me",
-      title:
-        "I care about building interfaces that are clean, fast, and easy to grow.",
+      title: "Clean UI, strong structure, and frontend code built to scale.",
       paragraphs: [
         "I’m Mehdi Filban, a Front-End Engineer with 3+ years of experience building real-world web applications with React and modern JavaScript.",
         "For me, frontend is not just about making things look good. I care about how components are structured, how state is managed, and how smooth the experience feels for the user.",
@@ -108,10 +107,9 @@ export const translations = {
         "1+ month",
         "Not sure yet",
       ],
-      submit: "Send Message",
-      submitHint:
-        "This opens your email app with the message already prepared.",
-      statusReady: "Your email app is opening with the message ready to send.",
+      submit: "Open in Gmail",
+      submitHint: "This opens Gmail with the message already prepared.",
+      statusReady: "Gmail is opening with your message ready to send.",
       statusCopied: "Email copied to clipboard.",
       statusCopyError:
         "Couldn’t copy it automatically. You can copy the email manually.",
@@ -153,10 +151,15 @@ export const translations = {
 
     intro: {
       badge: "Front-End Engineer • React & Next.js Developer",
-      titleTop: "من رابط‌های",
-      words: ["تمیز می‌سازم.", "سریع می‌سازم.", "قابل توسعه می‌سازم."],
+      titleTop: "من مهدی ام",
+      words: [
+        "توسعه کسب و کار شما",
+        "از ایده تا اجرا",
+        "با استفاده از",
+        "بهترین تکنولوژی ها",
+      ],
       description:
-        "من با React و Next.js وب‌اپلیکیشن‌های مدرن و واکنش‌گرا می‌سازم؛ با تمرکز روی ساختار تمیز، عملکرد خوب و تجربه‌ای که کاربر راحت باهاش ارتباط بگیره.",
+        "همراه رشد برند شما هستم؛ از شکل‌گیری ایده تا طراحی و اجرای یک تجربه دیجیتال حرفه‌ای.",
       viewProjects: "مشاهده پروژه‌ها",
       contactMe: "ارتباط با من",
       skills: [
@@ -168,7 +171,7 @@ export const translations = {
         "Zustand",
       ],
       stats: [
-        { value: "3+", label: "سال تجربه" },
+        { value: "4+", label: "سال تجربه" },
         { value: "10+", label: "پروژه ساخته‌شده" },
         { value: "UI", label: "تمرکز روی معماری" },
       ],
@@ -177,11 +180,10 @@ export const translations = {
 
     about: {
       badge: "درباره من",
-      title:
-        "به ساخت رابط‌هایی علاقه دارم که هم تمیز باشن، هم سریع، هم قابل توسعه.",
+      title: "ظاهر تمیز، ساختار قابل توسعه، تجربه روان.",
       paragraphs: [
         "من مهدی فیلبان هستم؛ Front-End Engineer با بیش از ۳ سال تجربه در ساخت وب‌اپلیکیشن‌های واقعی با React و JavaScript مدرن.",
-        "برای من فرانت‌اند فقط ظاهر زیبا نیست. مهمه که کامپوننت‌ها درست طراحی بشن، state قابل کنترل باشه و تجربه کاربر در تمام صفحه‌ها روان و قابل اعتماد بمونه.",
+        "برای من فرانت‌اند فقط ظاهر زیبا نیست. مهم است که کامپوننت‌ها درست طراحی شوند، state قابل کنترل باشد و تجربه کاربر در تمام صفحه‌ها روان و قابل اعتماد بماند.",
         "با React، Next.js، Tailwind CSS، Redux Toolkit، Zustand، REST APIs، gRPC و الگوهای مدرن UI مثل ساختارهای شبیه shadcn/ui کار می‌کنم.",
       ],
       highlights: [
@@ -202,16 +204,16 @@ export const translations = {
 
     contact: {
       badge: "تماس",
-      title: "ایده‌ای داری؟ بیایم تبدیلش کنیم به یک تجربه تمیز و کاربردی.",
+      title: "ایده‌ات را به یک رابط سریع و خوش‌ساخت تبدیل کنیم.",
       description:
-        "اگر برای پروژه، داشبورد، لندینگ پیج یا اپلیکیشن React نیاز به همکاری داری، چند خط درباره‌اش بنویس. فرم زیر متن ایمیل رو آماده می‌کنه تا راحت از ایمیل خودت ارسالش کنی.",
+        "اگر برای پروژه، داشبورد، لندینگ پیج یا اپلیکیشن React نیاز به همکاری داری، چند خط درباره‌اش بنویس. فرم زیر متن ایمیل را آماده می‌کند تا راحت از Gmail ارسالش کنی.",
       email: "ایمیل",
       linkedin: "LinkedIn",
       copyEmail: "کپی ایمیل",
-      copyEmailDescription: "برای تماس دستی، ایمیل رو سریع کپی کن",
+      copyEmailDescription: "برای تماس دستی، ایمیل را سریع کپی کن",
       formBadge: "Project Brief",
-      formTitle: "بهم بگو می‌خوای چی بسازی.",
-      formPill: "فرم آماده ایمیل",
+      formTitle: "بهم بگو قرار است چه چیزی بسازیم.",
+      formPill: "آماده ارسال با Gmail",
       fields: {
         name: "نام",
         email: "ایمیل",
@@ -242,9 +244,9 @@ export const translations = {
         "بیشتر از ۱ ماه",
         "هنوز مطمئن نیستم",
       ],
-      submit: "ارسال پیام",
-      submitHint: "با کلیک روی دکمه، برنامه ایمیل با متن آماده باز می‌شود.",
-      statusReady: "برنامه ایمیل با متن آماده در حال باز شدن است.",
+      submit: "باز کردن در Gmail",
+      submitHint: "با کلیک روی دکمه، Gmail با متن آماده باز می‌شود.",
+      statusReady: "جیمیل با متن آماده در حال باز شدن است.",
       statusCopied: "آدرس ایمیل کپی شد.",
       statusCopyError: "کپی خودکار انجام نشد. می‌توانی ایمیل را دستی کپی کنی.",
       emailSubjectPrefix: "درخواست همکاری از طرف",

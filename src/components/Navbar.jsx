@@ -36,6 +36,8 @@ export default function Navbar({ t, language, onToggleLanguage }) {
   const [theme, setTheme] = useState(getInitialTheme);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const isFa = language === "fa";
+
   const navigation = [
     { name: t.nav.home, href: "#home", id: "home" },
     { name: t.nav.projects, href: "#projects", id: "projects" },
@@ -169,7 +171,7 @@ export default function Navbar({ t, language, onToggleLanguage }) {
               <LayoutGroup id='desktop-navigation'>
                 <motion.div
                   layout
-                  dir={language === "fa" ? "rtl" : "ltr"}
+                  dir={isFa ? "rtl" : "ltr"}
                   transition={navTransition}
                   className={classNames(
                     "hidden items-center gap-1 rounded-full bg-white/90 shadow-sm ring-1 ring-black/5 backdrop-blur md:flex dark:bg-white/10 dark:ring-white/10",
@@ -280,7 +282,10 @@ export default function Navbar({ t, language, onToggleLanguage }) {
             </div>
           </motion.div>
 
-          <DisclosurePanel className='pointer-events-auto mx-auto mt-6 max-w-7xl rounded-[1.5rem] border border-black/5 bg-white/90 px-4 pb-5 pt-3 shadow-xl shadow-black/5 backdrop-blur-2xl md:hidden dark:border-white/10 dark:bg-zinc-950/90 dark:shadow-black/30'>
+          <DisclosurePanel
+            dir={isFa ? "rtl" : "ltr"}
+            className='pointer-events-auto mx-auto mt-6 max-w-7xl rounded-[1.5rem] border border-black/5 bg-white/90 px-4 pb-5 pt-3 shadow-xl shadow-black/5 backdrop-blur-2xl md:hidden dark:border-white/10 dark:bg-zinc-950/90 dark:shadow-black/30'
+          >
             <LayoutGroup id='mobile-navigation'>
               <motion.div
                 layout
@@ -298,6 +303,7 @@ export default function Navbar({ t, language, onToggleLanguage }) {
                         aria-current={isActive ? "page" : undefined}
                         className={classNames(
                           "block rounded-2xl px-4 py-3 text-base font-semibold transition",
+                          isFa ? "text-right" : "text-left",
                           isActive
                             ? "bg-[#009689] text-white shadow-sm"
                             : "bg-white text-gray-700 ring-1 ring-black/5 hover:text-[#009689] dark:bg-white/10 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-[#2dd4bf]",
@@ -315,7 +321,10 @@ export default function Navbar({ t, language, onToggleLanguage }) {
                     import.meta.env.BASE_URL
                   }assets/Mehdi-Filban-Resume.pdf`}
                   download
-                  className='mt-2 rounded-2xl border border-black/10 bg-white px-4 py-3 text-center text-base font-semibold text-gray-800 shadow-sm transition hover:text-[#009689] dark:border-white/10 dark:bg-white/10 dark:text-zinc-100 dark:hover:text-[#2dd4bf]'
+                  className={classNames(
+                    "mt-2 rounded-2xl border border-black/10 bg-white px-4 py-3 text-center text-base font-semibold text-gray-800 shadow-sm transition hover:text-[#009689] dark:border-white/10 dark:bg-white/10 dark:text-zinc-100 dark:hover:text-[#2dd4bf]",
+                    isFa ? "text-right" : "text-center",
+                  )}
                 >
                   {t.nav.downloadResume}
                 </DisclosureButton>

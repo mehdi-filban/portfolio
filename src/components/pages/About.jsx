@@ -64,7 +64,12 @@ export default function About({ t, language }) {
               {t.badge}
             </div>
 
-            <h2 className='mt-4 text-3xl font-black tracking-tight text-gray-950 dark:text-white sm:text-4xl'>
+            <h2
+              className={[
+                "mt-4 text-3xl font-black tracking-tight text-gray-950 dark:text-white sm:text-4xl lg:text-5xl",
+                isFa ? "fa-heading leading-[1.45]" : "leading-[1.08]",
+              ].join(" ")}
+            >
               {t.title}
             </h2>
 
