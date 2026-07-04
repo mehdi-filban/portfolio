@@ -151,7 +151,7 @@ export const translations = {
 
     intro: {
       badge: "Front-End Engineer • React & Next.js Developer",
-      titleTop: "من مهدی ام",
+      titleTop: "مهــــدی هســــتم",
       words: [
         "توسعه کسب و کار شما",
         "از ایده تا اجرا",
