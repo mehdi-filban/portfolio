@@ -171,8 +171,8 @@ export const translations = {
         "Zustand",
       ],
       stats: [
-        { value: "4+", label: "سال تجربه" },
-        { value: "10+", label: "پروژه ساخته‌شده" },
+        { value: "3+", label: "سال تجربه" },
+        { value: "5+", label: "پروژه ساخته‌شده" },
         { value: "UI", label: "تمرکز روی معماری" },
       ],
       codeTitle: "portfolio.jsx",
@@ -182,7 +182,7 @@ export const translations = {
       badge: "درباره من",
       title: "ظاهر تمیز، ساختار قابل توسعه، تجربه روان.",
       paragraphs: [
-        "من مهدی ام ، یه Front-End Engineer با بیش از 4 سال تجربه در ساخت وب‌اپلیکیشن‌های واقعی با React و JavaScript مدرن.",
+        "من مهدی ام ، یه Front-End Engineer با بیش از 3 سال تجربه در ساخت وب‌اپلیکیشن‌های واقعی با React و JavaScript مدرن.",
         "برای من فرانت‌اند فقط ظاهر زیبا نیست. مهمه که کامپوننت‌ها درست طراحی بشن ، state قابل کنترل باشد و تجربه کاربر در تمام صفحه‌ها روان و قابل اعتماد بمونه.",
         "با React، Next.js، Tailwind CSS، Redux Toolkit، Zustand، REST APIs، gRPC و الگوهای مدرن UI مثل ساختارهای شبیه shadcn/ui کار می‌کنم.",
       ],
@@ -193,8 +193,8 @@ export const translations = {
         "توسعه UI با تمرکز روی عملکرد",
       ],
       metrics: [
-        { value: "4+", label: "سال تجربه" },
-        { value: "10+", label: "پروژه ساخته‌شده" },
+        { value: "3+", label: "سال تجربه" },
+        { value: "5+", label: "پروژه ساخته‌شده" },
         { value: "REST", label: "اتصال به API" },
         { value: "gRPC", label: "لایه ارتباطی" },
       ],
