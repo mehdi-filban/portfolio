@@ -35,7 +35,7 @@ export const translations = {
       ],
       stats: [
         { value: "3+", label: "Years Experience" },
-        { value: "10+", label: "Projects Built" },
+        { value: "5+", label: "Projects Built" },
         { value: "UI", label: "Architecture Focus" },
       ],
       codeTitle: "portfolio.jsx",
@@ -57,7 +57,7 @@ export const translations = {
       ],
       metrics: [
         { value: "3+", label: "Years of experience" },
-        { value: "10+", label: "Projects built" },
+        { value: "5+", label: "Projects built" },
         { value: "REST", label: "API integration" },
         { value: "gRPC", label: "Communication layer" },
       ],
