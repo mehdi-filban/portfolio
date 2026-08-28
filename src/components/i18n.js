@@ -34,7 +34,7 @@ export const translations = {
         "Zustand",
       ],
       stats: [
-        { value: "3+", label: "Years Experience" },
+        { value: "4+", label: "Years Experience" },
         { value: "5+", label: "Projects Built" },
         { value: "UI", label: "Architecture Focus" },
       ],
@@ -45,7 +45,7 @@ export const translations = {
       badge: "About Me",
       title: "Clean UI, strong structure, and frontend code built to scale.",
       paragraphs: [
-        "I’m Mehdi Filban, a Front-End Engineer with 3+ years of experience building real-world web applications with React and modern JavaScript.",
+        "I’m Mehdi Filban, a Front-End Engineer with 4+ years of experience building real-world web applications with React and modern JavaScript.",
         "For me, frontend is not just about making things look good. I care about how components are structured, how state is managed, and how smooth the experience feels for the user.",
         "I work with React, Next.js, Tailwind CSS, Redux Toolkit, Zustand, REST APIs, gRPC, and modern UI patterns like shadcn/ui-style component systems.",
       ],
@@ -56,7 +56,7 @@ export const translations = {
         "Performance-focused UI development",
       ],
       metrics: [
-        { value: "3+", label: "Years of experience" },
+        { value: "4+", label: "Years of experience" },
         { value: "5+", label: "Projects built" },
         { value: "REST", label: "API integration" },
         { value: "gRPC", label: "Communication layer" },
@@ -171,7 +171,7 @@ export const translations = {
         "Zustand",
       ],
       stats: [
-        { value: "3+", label: "سال تجربه" },
+        { value: "4+", label: "سال تجربه" },
         { value: "5+", label: "پروژه ساخته‌شده" },
         { value: "UI", label: "تمرکز روی معماری" },
       ],
@@ -182,7 +182,7 @@ export const translations = {
       badge: "درباره من",
       title: "ظاهر تمیز، ساختار قابل توسعه، تجربه روان.",
       paragraphs: [
-        "من مهدی ام ، یه Front-End Engineer با بیش از 3 سال تجربه در ساخت وب‌اپلیکیشن‌های واقعی با React و JavaScript مدرن.",
+        "من مهدی ام ، یه Front-End Engineer با بیش از 4 سال تجربه در ساخت وب‌اپلیکیشن‌های واقعی با React و JavaScript مدرن.",
         "برای من فرانت‌اند فقط ظاهر زیبا نیست. مهمه که کامپوننت‌ها درست طراحی بشن ، state قابل کنترل باشد و تجربه کاربر در تمام صفحه‌ها روان و قابل اعتماد بمونه.",
         "با React، Next.js، Tailwind CSS، Redux Toolkit، Zustand، REST APIs، gRPC و الگوهای مدرن UI مثل ساختارهای شبیه shadcn/ui کار می‌کنم.",
       ],
@@ -193,7 +193,7 @@ export const translations = {
         "توسعه UI با تمرکز روی عملکرد",
       ],
       metrics: [
-        { value: "3+", label: "سال تجربه" },
+        { value: "4+", label: "سال تجربه" },
         { value: "5+", label: "پروژه ساخته‌شده" },
         { value: "REST", label: "اتصال به API" },
         { value: "gRPC", label: "لایه ارتباطی" },
