@@ -105,7 +105,7 @@ const projects = [
     subtitle: "Freelance Platform · In Development",
     description:
       "A freelance platform that connects clients with vetted freelancers — from discovery and proposals to role-based project dashboards. Designed and built end-to-end with a premium, SaaS-grade interface.",
-    tech: ["React", "Tailwind CSS", "Nest.js", "REST API", "JWT Auth"],
+    tech: ["Next.js", "Nest.js", "REST API", "JWT Auth", "Redis", "ORM: Prisma", "Database: PostgreSQL","Tailwind CSS"],
     impact: ["Role-based dashboards", "Auth & onboarding", "Dark-mode system"],
     status: "Hasn't Published Yet",
     published: false,
